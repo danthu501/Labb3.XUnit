@@ -67,9 +67,9 @@ namespace CalculatorTest
         [Theory]
         [InlineData(10, 3.2 , 3.125)]
         [InlineData(10, 2.5, 4)]
-        [InlineData(12.4, 4 , 3.1)]
+        [InlineData(12.4, 4, 3.1)]
         [InlineData(12, -6, -2)]
-        [InlineData(-12, 6 , -2)]
+        [InlineData(-12, 0, 0)]
         public void Division_Test(decimal firstnumber, decimal secondnumber, decimal result)
         {
             Calculator calculator = new Calculator

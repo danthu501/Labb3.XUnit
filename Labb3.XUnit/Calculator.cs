@@ -136,11 +136,20 @@ namespace Labb3.XUnit
 
         public Calculator Division(Calculator calculator)
         {
-            var result = calculator._FirstNumber / calculator._SecondNumber;
-            calculator._Result = result;
-            calculator._MatematikSign = " / ";
-            _Calculations.Add(calculator);
-            return calculator;
+            try
+            {
+                var result = calculator._FirstNumber / calculator._SecondNumber;
+                calculator._Result = result;
+                calculator._MatematikSign = " / ";
+                _Calculations.Add(calculator);
+                return calculator;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("You can not devide by zero");
+                return calculator;
+            }
+
         }
 
         public Calculator Multiplikation(Calculator calculator)
