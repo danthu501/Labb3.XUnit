@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,164 +9,191 @@ namespace Labb3.XUnit
 {
     public class Calculator
     {
-        public double _FirstNumber { get; set; }
-        public double _SecondNumber { get; set; }
-        public double _Result { get; set; }
+        public decimal _FirstNumber { get; set; }
+        public decimal _SecondNumber { get; set; }
+        public decimal _Result { get; set; }
         public string? _MatematikSign { get; set; }
 
-        List<Calculator> _Calculations = new List<Calculator>();
 
+        public List<Calculator> _Calculations = new List<Calculator>();
 
-        public double Addition(Calculator calculator)
-        {
-            var result = calculator._FirstNumber + calculator._SecondNumber;
-            calculator._Result = result;
-            calculator._MatematikSign = " + ";
-            WriteResult(calculator);
-            _Calculations.Add(calculator);
-            return result;
-        }
-
-        public double Substraktion(Calculator calculator)
-        {
-            var result = calculator._FirstNumber - calculator._SecondNumber;
-            calculator._Result = result;
-            calculator._MatematikSign = " - ";
-            WriteResult(calculator);
-            _Calculations.Add(calculator);
-            return result;
-        }
-
-        public double Division(Calculator calculator)
-        {
-            var result = calculator._FirstNumber / calculator._SecondNumber;
-            calculator._Result = result;
-            calculator._MatematikSign = " / ";
-            WriteResult(calculator);
-            _Calculations.Add(calculator);
-            return result;
-        }
-
-        public double Multiplikation(Calculator calculator)
-        {
-            var result = calculator._FirstNumber * calculator._SecondNumber;
-            calculator._Result = result;
-            calculator._MatematikSign = " * ";
-            WriteResult(calculator);
-            _Calculations.Add(calculator);
-            return result;
-        }
-
-        public Calculator GetNumbers()
-        {
-            var calculator = new Calculator();
-            Console.WriteLine("Var god att ange 2 siffor");
-            bool getnumbers;
-            do
-            {
-                try
-                {
-                    Console.WriteLine("Ange den första siffran");
-                    string number1 = Console.ReadLine();
-                    calculator._FirstNumber = double.Parse(number1);
-                    getnumbers = false;
-
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Var god ange en siffra");
-                    getnumbers = true;
-                }
-            } while (getnumbers);
-
-            do
-            {
-                try
-                {
-                    Console.WriteLine("Ange den andra siffran");
-                    string number2 = Console.ReadLine();
-                    calculator._SecondNumber = double.Parse(number2);
-                    getnumbers = false;
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Var god ange en siffra");
-                    getnumbers = true;
-
-                }
-            } while (getnumbers);
-         
-           
-            return calculator;
-        }
-
-
+      
         public void Calculate()
         {
             bool menuBool = true;
 
+
             while (menuBool)
             {
-                Console.WriteLine("Meny");
+                Console.WriteLine("Menu");
                 Console.WriteLine("[1] Addition");
                 Console.WriteLine("[2] Substraktion");
                 Console.WriteLine("[3] Division");
                 Console.WriteLine("[4] Multiplikation");
                 Console.WriteLine("[5] Write all results");
                 Console.WriteLine("[6] Quit");
+                string menu = Console.ReadLine();
 
-                int menu;
-                Int32.TryParse(Console.ReadLine(), out menu);
 
                 switch (menu)
                 {
-                case 1:
-                        var Cal = GetNumbers();
-                        Addition(Cal);
-                    break;
-                case 2:
-                        var Cal2 = GetNumbers();
-                        Substraktion(Cal2);
-                    break;
-                case 3:
-                        var Cal3 = GetNumbers();
-                        Division(Cal3);
-                    break;
-                case 4:
-                        var Cal4 = GetNumbers();
-                        Multiplikation(Cal4);
-                    break;
-                case 5:
+                    case "1":
+                        Addition();
+                        break;
+                    case "2":
+                        Substraktion();
+                        break;
+                    case "3":
+                        Division();
+                        break;
+                    case "4":
+                        Multiplikation();
+                        break;
+                    case "5":
                         WriteAllCalculations();
-                    break;
-                case 6:
+                        break;
+                    case "6":
                         menuBool = false;
-                     break;
-                default:
+                        break;
+                    default:
                         Console.WriteLine("type a number from 1 to 5");
-                    break;
+                        break;
                 }
             }
-
         }
 
+        public void Addition()
+        {
+            var Cal = GetNumbers();
+            var calculation = Addition(Cal);
+            var result = Result(calculation);
+            WriteTheresult(result);
+        }
+        public void Substraktion()
+        {
+            var Cal2 = GetNumbers();
+            var calculation1 = Substraktion(Cal2);
+            var result = Result(calculation1);
+            WriteTheresult(result);
+        }
+        public void Division()
+        {
+            var Cal3 = GetNumbers();
+            var calculation2 = Division(Cal3);
+            var result = Result(calculation2);
+            WriteTheresult(result);
+        }
+        public void Multiplikation()
+        {
+            var Cal4 = GetNumbers();
+            var calculation3 = Multiplikation(Cal4);
+            var result =Result(calculation3);
+            WriteTheresult(result);
+        }
         public void WriteAllCalculations()
         {
+    
+            string allCal;
             foreach (var item in _Calculations)
             {
-                Console.WriteLine(item._FirstNumber +" "+ item._MatematikSign +" "+ item._SecondNumber+" = " + item._Result); 
+                allCal = item._FirstNumber + " " + item._MatematikSign + " " + item._SecondNumber + " = " + item._Result;
+                Console.WriteLine(allCal);
             }
             Console.ReadKey();
             Console.Clear();
         }
 
-        public void WriteResult(Calculator calculator)
+        public string Result(Calculator calculator)
         {
-            Console.WriteLine(calculator._FirstNumber + " " + calculator._MatematikSign + " " + calculator._SecondNumber + " = " + calculator._Result);
-            Console.ReadKey ();
-            Console.Clear ();
+            string result = calculator._FirstNumber + " " + calculator._MatematikSign + " " + calculator._SecondNumber + " = " + calculator._Result;
+
+            return result;
+        }
+        public void WriteTheresult(string result)
+        {
+            Console.WriteLine(result);
+            Console.ReadKey();
+            Console.Clear();
         }
 
+        public Calculator Addition(Calculator calculator)
+        {
+            var result = calculator._FirstNumber + calculator._SecondNumber;
+            calculator._Result = result;
+            calculator._MatematikSign = " + ";
+            _Calculations.Add(calculator);
+            return calculator;
+        }
+
+        public Calculator Substraktion(Calculator calculator)
+        {
+            var result = calculator._FirstNumber - calculator._SecondNumber;
+            calculator._Result = result;
+            calculator._MatematikSign = " - ";
+            _Calculations.Add(calculator);
+            return calculator;
+        }
+
+        public Calculator Division(Calculator calculator)
+        {
+            var result = calculator._FirstNumber / calculator._SecondNumber;
+            calculator._Result = result;
+            calculator._MatematikSign = " / ";
+            _Calculations.Add(calculator);
+            return calculator;
+        }
+
+        public Calculator Multiplikation(Calculator calculator)
+        {
+            var result = calculator._FirstNumber * calculator._SecondNumber;
+            calculator._Result = result;
+            calculator._MatematikSign = " * ";
+            _Calculations.Add(calculator);
+            return calculator;
+        }
+
+        public Calculator GetNumbers()
+        {
+            var calculator = new Calculator();
+            Console.WriteLine("Please enter two numbers");
+            bool getnumbers;
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Write the first number");
+                    string number1 = Console.ReadLine();
+                    calculator._FirstNumber = decimal.Parse(number1);
+                    getnumbers = false;
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please write a number");
+                    getnumbers = true;
+                }
+            } while (getnumbers);
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Write the second number");
+                    string number2 = Console.ReadLine();
+                    calculator._SecondNumber = decimal.Parse(number2);
+                    getnumbers = false;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please write a number");
+                    getnumbers = true;
+
+                }
+            } while (getnumbers);
+
+
+            return calculator;
+        }
     }
 
 }
