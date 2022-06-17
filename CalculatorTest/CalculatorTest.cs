@@ -103,18 +103,20 @@ namespace CalculatorTest
         }
 
         [Fact]
-        public void Check_If_Result_Not_Null()
+        public void Check_If_Result_Calculations_String_Is_Equal_To_Expected_String()
         {
             Calculator calculator = new Calculator
             {
-                _FirstNumber = 0,
-                _SecondNumber = 0,
-                _Result = 0
+                _FirstNumber = 1,
+                _SecondNumber = 1,
+                _MatematikSign="+",
+                _Result = 2
             };
 
             string test = calculator.Result(calculator);
+            string expected = "1 + 1 = 2";
 
-            Assert.NotNull(test);        
+            Assert.Equal(expected, test);      
         }
     }
 }
