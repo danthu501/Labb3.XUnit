@@ -28,4 +28,5 @@ Resultat: Resultatet 2 ska skrivas ut.
 
 - Kör acceptanstest 1 och 2
 - Välj skriv ut alla beräkningar
+<br>
 Resultat: Alla berräkningar ska skrivas ut. 
