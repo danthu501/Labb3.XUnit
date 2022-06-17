@@ -109,7 +109,7 @@ namespace CalculatorTest
             {
                 _FirstNumber = 1,
                 _SecondNumber = 1,
-                _MatematikSign="+",
+                _MatematikSign = "+",
                 _Result = 2
             };
 
