@@ -3,13 +3,14 @@
 
 ### Acceptanstest 1
 - Öppna applikationen
-- Välj räknesättet Addition
+- Välj räknesättet Addition 
 - Tryck på Enter
 - Skriv in en valfri siffra
 - Tryck på Enter
 - Skriv in andra siffran 
 - Tryck på enter
-Resultatet skrivs ut. 
+<br>
+Resultat: Resultatet av beräkningen ska skrivas ut. 
 
 ### Acceptanstest 2
 
@@ -20,10 +21,11 @@ Resultatet skrivs ut.
 - Tryck på enter
 - Skriv in 2,5
 - Tryck på enter
-Resultatet ska skrvia ut.
+<br>
+Resultat: Resultatet 2 ska skrivas ut.
 
 ### Acceptanstest 3
 
 - Kör acceptanstest 1 och 2
 - Välj skriv ut alla beräkningar
-Resultat alla berräkningar ska skrivas ut. 
+Resultat: Alla berräkningar ska skrivas ut. 
